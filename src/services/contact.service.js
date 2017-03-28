@@ -20,8 +20,8 @@ function list (request, response, next) {
       Contact.count(),
       Contact.list({ limit, skip })
     ])
-    .then(([pages, contacts]) => {
-      response.json({ pages, contacts });
+    .then(([count, contacts]) => {
+      response.json({ count, contacts });
     })
     .catch(error => next(error));
 }

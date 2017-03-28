@@ -47,7 +47,7 @@ describe('List Contacts', () => {
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
               response.body.should.have
-                .property('pages').eql(2);
+                .property('count').eql(2);
               response.body.contacts.length
                 .should.eql(2);
               done();
@@ -62,7 +62,7 @@ describe('List Contacts', () => {
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
               response.body.should.have
-                .property('pages').eql(2);
+                .property('count').eql(2);
               response.body.contacts
                 .length.should.eql(1);
               response.body.contacts[0].should.have
@@ -79,7 +79,7 @@ describe('List Contacts', () => {
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
               response.body.should.have
-                .property('pages').eql(2);
+                .property('count').eql(2);
               response.body.contacts
                 .length.should.eql(1);
               response.body.contacts[0].should.have
