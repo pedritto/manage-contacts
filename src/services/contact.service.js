@@ -1,3 +1,5 @@
+const httpStatus = require('http-status');
+
 const Contact = require('../models/contact.schema');
 const contactFactory = require('../utils/contact.factory');
 
@@ -28,7 +30,7 @@ function create (request, response, next) {
   const contact = contactFactory.createModel(request.body);
 
   contact.save ()
-    .then(newContact => response.json(newContact))
+    .then(newContact => response.status(httpStatus.CREATED).json(newContact))
     .catch(error => next(error));
 }
 

@@ -33,7 +33,7 @@ describe('Create Contact', () => {
             .post(uri)
             .send(testContact)
             .end((error, response) => {
-                response.should.have.status(httpStatus.OK);
+                response.should.have.status(httpStatus.CREATED);
                 response.body.should.have.property('name')
                   .eql(testContact.name);
                 response.body.should.have.property('address')
@@ -60,7 +60,7 @@ describe('Create Contact', () => {
             .post(uri)
             .send(testContact)
             .end((error, response) => {
-                response.should.have.status(httpStatus.OK);
+                response.should.have.status(httpStatus.CREATED);
                 response.body.should.have.property('friendlyName')
                   .eql(testContact.friendlyName);
               done();

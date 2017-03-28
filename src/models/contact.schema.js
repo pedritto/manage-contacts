@@ -1,5 +1,7 @@
 const Promise = require('bluebird');
 const mongooseHistory = require('mongoose-history');
+const httpStatus = require('http-status');
+
 const mongoose = require('../mongoose');
 const Schema = mongoose.Schema;
 
@@ -33,6 +35,12 @@ const ContactSchema = new Schema({
     },
 });
 
+function notFound () {
+  const error = new Error('Contact not found');
+  error.status = httpStatus.NOT_FOUND;
+  return Promise.reject(error);
+}
+
 ContactSchema.statics = {
 
   get (id) {
@@ -42,7 +50,7 @@ ContactSchema.statics = {
         if (contact) {
           return contact;
         }
-        return Promise.reject();
+        return notFound();
       });
   },
 
@@ -68,7 +76,7 @@ ContactSchema.statics = {
         if (history) {
           return history;
         }
-        return Promise.reject();
+        return notFound();
       });
   }
 

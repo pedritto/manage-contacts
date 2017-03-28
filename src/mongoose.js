@@ -1,6 +1,10 @@
-const config = require('../conf/app');
 const mongoose = require('mongoose');
 const Mockgoose = require('mockgoose').Mockgoose;
+const Promise = require('bluebird');
+
+const config = require('../conf/app');
+
+mongoose.Promise = Promise;
 
 if (process.env.NODE_ENV === 'test') {
   const mockgoose = new Mockgoose(mongoose);
