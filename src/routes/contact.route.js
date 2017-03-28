@@ -1,14 +1,15 @@
 const express = require('express');
 const service = require('../services/contact.service');
+const validate = require ('../utils/contact.validation');
 
 const router = express.Router();
 
 router.route('/')
   .get(service.list)
-  .post(service.create);
+  .post(validate.create(), service.create);
 
 router.route('/:id')
-  .put(service.update)
+  .put(validate.update(), service.update)
   .delete(service.remove);
 
 router.route('/:id/history')

@@ -1,4 +1,5 @@
 const Contact = require('../models/contact.schema');
+const contactFactory = require('../utils/contact.factory');
 
 function load (request, response, next, id) {
   Contact.get(id)
@@ -19,15 +20,7 @@ function list (request, response, next) {
 }
 
 function create (request, response, next) {
-
-  const body = request.body;
-  const contact = new Contact({
-    name: body.name,
-    address: body.address,
-    contactNumber: body.contactNumber,
-    email: body.email,
-    friendlyName: body.friendlyName
-  });
+  const contact = contactFactory.createModel(request.body);
 
   contact.save ()
     .then(newContact => response.json(newContact))
@@ -35,14 +28,7 @@ function create (request, response, next) {
 }
 
 function update (request, response, next) {
-  const contact = request.contact;
-  const body = request.body;
-
-  contact.name = body.name;
-  contact.address = body.address;
-  contact.contactNumber = body.contactNumber;
-  contact.email = body.email;
-  contact.friendlyName = body.friendlyName;
+  const contact = contactFactory.createModel(request.body, request.contact);
 
   contact.save()
     .then(updatedContact => response.json(updatedContact))

@@ -73,7 +73,25 @@ describe('Update Contact', () => {
             .put(uri + '/' + savedContact._id)
             .send(testContact)
             .end((error, response) => {
-              response.should.have.status(httpStatus.INTERNAL_SERVER_ERROR);
+              response.should.have.status(httpStatus.BAD_REQUEST);
+              done();
+            });
+
+      });
+
+      it('it should be 404 without id', (done) => {
+        const testContact = new Contact ({
+          name:          'Test Contact',
+          address:       'Updated Address',
+          contactNumber: '9999999',
+          email:         'updated.contact@tst.com',
+        });
+
+        chai.request(app)
+            .put(uri)
+            .send(testContact)
+            .end((error, response) => {
+              response.should.have.status(httpStatus.NOT_FOUND);
               done();
             });
 

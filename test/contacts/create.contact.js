@@ -78,7 +78,7 @@ describe('Create Contact', () => {
             .post(uri)
             .send(testContact)
             .end((error, response) => {
-                response.should.have.status(httpStatus.INTERNAL_SERVER_ERROR);
+                response.should.have.status(httpStatus.BAD_REQUEST);
               done();
             });
       });

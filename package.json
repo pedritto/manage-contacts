@@ -15,7 +15,9 @@
     "bluebird": "3.4.6",
     "body-parser": "~1.0.1",
     "express": "^4.14.1",
+    "express-validation": "^1.0.2",
     "http-status": "^0.2.0",
+    "joi": "^10.3.1",
     "mongoose": "^4.8.1",
     "mongoose-history": "^0.4.2",
     "morgan": "~1.0.0"
