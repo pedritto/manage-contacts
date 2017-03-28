@@ -54,6 +54,12 @@ ContactSchema.statics = {
       .exec();
   },
 
+  count () {
+    return this.where({})
+      .count()
+      .exec();
+  },
+
   history (id) {
     return this.historyModel()
       .find({ 'd._id': id })

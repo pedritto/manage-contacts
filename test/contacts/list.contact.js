@@ -46,7 +46,10 @@ describe('List Contacts', () => {
             .get(uri)
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
-              response.body.length.should.eql(2);
+              response.body.should.have
+                .property('pages').eql(2);
+              response.body.contacts.length
+                .should.eql(2);
               done();
             });
 
@@ -58,9 +61,12 @@ describe('List Contacts', () => {
             .get(uri + '?limit=1')
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
-              response.body.length.should.eql(1);
-              response.body[0].should.have.property('name')
-                .eql(contactOne.name);
+              response.body.should.have
+                .property('pages').eql(2);
+              response.body.contacts
+                .length.should.eql(1);
+              response.body.contacts[0].should.have
+                .property('name').eql(contactOne.name);
               done();
             });
 
@@ -72,9 +78,12 @@ describe('List Contacts', () => {
             .get(uri + '?limit=1&skip=1')
             .end((error, response) => {
               response.should.have.status(httpStatus.OK);
-              response.body.length.should.eql(1);
-              response.body[0].should.have.property('name')
-                .eql(contactTwo.name);
+              response.body.should.have
+                .property('pages').eql(2);
+              response.body.contacts
+                .length.should.eql(1);
+              response.body.contacts[0].should.have
+                .property('name').eql(contactTwo.name);
               done();
             });
 

@@ -14,8 +14,13 @@ function list (request, response, next) {
   const limit = parseInt(request.query.limit);
   const skip  = parseInt(request.query.skip);
 
-  Contact.list({ limit, skip })
-    .then(contacts => response.json(contacts))
+  Promise.all([
+      Contact.count(),
+      Contact.list({ limit, skip })
+    ])
+    .then(([pages, contacts]) => {
+      response.json({ pages, contacts });
+    })
     .catch(error => next(error));
 }
 
