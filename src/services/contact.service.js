@@ -58,7 +58,7 @@ function remove (request, response, next) {
 
 function history (request, response, next) {
   const contact = request.contact;
-  contact.history()
+  Contact.history(contact._id)
     .then(history => response.json(history))
     .catch(error => next(error));
 }

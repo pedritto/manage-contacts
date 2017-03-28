@@ -1,6 +1,14 @@
-const Promise  = require('bluebird');
+const Promise = require('bluebird');
+const mongooseHistory = require('mongoose-history');
 const mongoose = require('../mongoose');
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
+
+const historyOptions = {
+  indexes: [{
+    't': -1,
+    'd._id': 1
+    }]
+};
 
 const ContactSchema = new Schema({
     name: {
@@ -46,10 +54,20 @@ ContactSchema.statics = {
       .exec();
   },
 
-  history () {
-    // TODO: implement history
-    return Promise.reject();
+  history (id) {
+    return this.historyModel()
+      .find({ 'd._id': id })
+      .exec()
+      .then(history => {
+        if (history) {
+          return history;
+        }
+        return Promise.reject();
+      });
   }
+
 };
+
+ContactSchema.plugin(mongooseHistory, historyOptions);
 
 module.exports = mongoose.model('contact', ContactSchema);

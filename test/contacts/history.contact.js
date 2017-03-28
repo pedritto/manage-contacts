@@ -18,6 +18,7 @@ let testContact;
 describe('Contact History', () => {
     before((done) => {
       Contact.remove({}, (error) => {});
+      Contact.historyModel().remove({}, (error) => {});
 
       const contact = new Contact ({
         name:          'Test Contact',
@@ -26,16 +27,27 @@ describe('Contact History', () => {
         email:         'test.contact@tst.com'
       });
 
-      done();
+      contact.save()
+        .then(saved => {
+          testContact = saved;
+          done();
+        });
 
     });
 
   describe('/GET contact history', () => {
       it('it should GET contact history', (done) => {
-        // TODO: test once implemented
-        done();
-      });
 
+        chai.request(app)
+            .get(uri + '/' + testContact._id + '/history')
+            .end((error, response) => {
+              response.should.have.status(httpStatus.OK);
+              response.body.length.should.eql(1);
+              response.body[0].should.have.property('o').eql('i');
+              done();
+            });
+
+      });
   });
 
 });
