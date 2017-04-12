@@ -29,7 +29,11 @@ const ContactSchema = new Schema({
       type: String,
       required: true
     },
-    friendlyName: {
+    company: {
+      type: String,
+      required: true
+    },
+    picture: {
       type: String,
       required: false
     },

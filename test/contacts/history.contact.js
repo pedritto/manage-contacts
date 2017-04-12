@@ -23,6 +23,7 @@ describe('Contact History', () => {
       const contact = new Contact ({
         name:          'Test Contact',
         address:       'Test Address',
+        company:       'Test Company',
         contactNumber: '123123',
         email:         'test.contact@tst.com'
       });

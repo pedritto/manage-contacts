@@ -25,6 +25,7 @@ describe('Create Contact', () => {
         const testContact = {
           name:          'Test Contact',
           address:       'Test Address',
+          company:       'Test Company',
           contactNumber: '123123',
           email:         'test.contact@tst.com'
         };
@@ -38,22 +39,25 @@ describe('Create Contact', () => {
                   .eql(testContact.name);
                 response.body.should.have.property('address')
                   .eql(testContact.address);
+               response.body.should.have.property('company')
+                  .eql(testContact.company);
                 response.body.should.have.property('contactNumber')
                   .eql(testContact.contactNumber);
                 response.body.should.have.property('email')
                   .eql(testContact.email);
-                  response.body.should.have.property('_id');
+                  response.body.should.have.property('id');
               done();
             });
       });
 
-      it('it should CREATE a new contact with friendlyName', (done) => {
+      it('it should CREATE a new contact with picture', (done) => {
         const testContact = {
           name:          'Test Contact',
           address:       'Test Address',
+          company:       'Test Company',
           contactNumber: '123123',
           email:         'test.contact@tst.com',
-          friendlyName:  'testy'
+          picture:       'dummy'
         };
 
         chai.request(app)
@@ -61,8 +65,8 @@ describe('Create Contact', () => {
             .send(testContact)
             .end((error, response) => {
                 response.should.have.status(httpStatus.CREATED);
-                response.body.should.have.property('friendlyName')
-                  .eql(testContact.friendlyName);
+                response.body.should.have.property('picture')
+                  .eql(testContact.picture);
               done();
             });
       });
@@ -70,6 +74,7 @@ describe('Create Contact', () => {
       it('it should NOT CREATE a new contact without name', (done) => {
         const testContact = {
           address:       'Test Address',
+          company:       'Test Company',
           contactNumber: '123123',
           email:         'test.contact@tst.com'
         };

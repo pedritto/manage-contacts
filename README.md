@@ -28,7 +28,7 @@ to create, update, remove and list contacts and to get the history of each conta
 | --------|---------|
 |ref | /api/v1/contacts|
 | method | POST|
-| body | `name: required, address: required, contactNumber: required, email: required, friendlyName: optional` |
+| body | `name: required, address: required, contactNumber: required, email: required, company: required, picture: optional` |
 | response | contact |
 
 ### _Update contact_
@@ -36,7 +36,7 @@ to create, update, remove and list contacts and to get the history of each conta
 | --------|---------|
 |ref | /api/v1/contacts/:id|
 | method | PUT|
-| body | `name: required, address: required, contactNumber: required, email: required, friendlyName: optional` |
+| body | `name: required, address: required, contactNumber: required, email: required, company: required, picture: optional` |
 | response | contact |
 
 ### _Delete contact_

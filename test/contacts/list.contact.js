@@ -15,6 +15,7 @@ const uri = '/api/v1/contacts';
 const contactOne = new Contact ({
   name:          'A Test Contact 1',
   address:       'Test Address 1',
+  company:       'Test Company 1',
   contactNumber: '123123',
   email:         'test1.contact@tst.com'
 });
@@ -22,6 +23,7 @@ const contactOne = new Contact ({
 const contactTwo = new Contact ({
   name:          'B Test Contact 2',
   address:       'Test Address 2',
+  company:       'Test Company 2',
   contactNumber: '123123',
   email:         'test2.contact@tst.com'
 });
