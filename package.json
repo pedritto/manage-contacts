@@ -1,6 +1,6 @@
 {
   "name": "manage-contacts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "engines": {
     "node": "^6.9.5",
@@ -22,7 +22,8 @@
     "method-override": "^2.3.8",
     "mongoose": "^4.8.1",
     "mongoose-history": "^0.4.2",
-    "morgan": "~1.0.0"
+    "morgan": "~1.0.0",
+    "node-rest-client-promise": "2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

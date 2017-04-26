@@ -22,7 +22,7 @@ describe('Delete Contact', () => {
         const contact = new Contact ({
           name:          'Test Contact',
           address:       'Test Address',
-          company:       'Test Company',
+          partnerId:     100,
           contactNumber: '123123',
           email:         'test.contact@tst.com'
         });
@@ -46,8 +46,8 @@ describe('Delete Contact', () => {
                 .eql(savedContact.name);
               response.body.should.have.property('address')
                 .eql(savedContact.address);
-             response.body.should.have.property('company')
-                .eql(savedContact.company);
+             response.body.should.have.property('partnerId')
+                .eql(savedContact.partnerId);
               response.body.should.have.property('contactNumber')
                 .eql(savedContact.contactNumber);
               response.body.should.have.property('email')

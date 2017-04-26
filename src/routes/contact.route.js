@@ -1,20 +1,20 @@
 const express = require('express');
-const service = require('../services/contact.service');
+const controller = require('../controllers/contact.controller');
 const validate = require ('../utils/contact.validation');
 
 const router = express.Router();
 
 router.route('/')
-  .get(service.list)
-  .post(validate.create(), service.create);
+  .get(controller.list)
+  .post(validate.create(), controller.create);
 
 router.route('/:id')
-  .put(validate.update(), service.update)
-  .delete(service.remove);
+  .put(validate.update(), controller.update)
+  .delete(controller.remove);
 
 router.route('/:id/history')
-  .get(service.history);
+  .get(controller.history);
 
-router.param('id', service.load);
+router.param('id', controller.load);
 
 module.exports = router;

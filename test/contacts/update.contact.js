@@ -22,7 +22,7 @@ describe('Update Contact', () => {
         const contact = new Contact ({
           name:          'Test Contact',
           address:       'Test Address',
-          company:       'Test Company',
+          partnerId:     100,
           contactNumber: '123123',
           email:         'test.contact@tst.com'
         });
@@ -40,7 +40,7 @@ describe('Update Contact', () => {
         const testContact = new Contact ({
           name:          'Updated Name',
           address:       'Updated Address',
-          company:       'Test Company',
+          partnerId:     101,
           contactNumber: '9999999',
           email:         'updated.contact@tst.com'
         });
@@ -54,8 +54,8 @@ describe('Update Contact', () => {
                 .eql(testContact.name);
               response.body.should.have.property('address')
                 .eql(testContact.address);
-             response.body.should.have.property('company')
-                .eql(testContact.company);
+             response.body.should.have.property('partnerId')
+                .eql(testContact.partnerId);
               response.body.should.have.property('contactNumber')
                 .eql(testContact.contactNumber);
               response.body.should.have.property('email')
@@ -87,7 +87,7 @@ describe('Update Contact', () => {
         const testContact = new Contact ({
           name:          'Test Contact',
           address:       'Updated Address',
-          company:       'Updated Company',
+          partnerId:     200,
           contactNumber: '9999999',
           email:         'updated.contact@tst.com',
         });

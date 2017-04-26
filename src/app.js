@@ -5,6 +5,7 @@ const cors = require('cors');
 const methodOverride = require('method-override');
 
 const contactRoutes = require('./routes/contact.route');
+const partnerRoutes = require('./routes/partner.route');
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(methodOverride());
 app.use(cors());
 
 app.use('/api/v1/contacts', contactRoutes);
+app.use('/api/v1/partners', partnerRoutes);
 
 module.exports = app;

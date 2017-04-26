@@ -25,7 +25,7 @@ describe('Create Contact', () => {
         const testContact = {
           name:          'Test Contact',
           address:       'Test Address',
-          company:       'Test Company',
+          partnerId:     100,
           contactNumber: '123123',
           email:         'test.contact@tst.com'
         };
@@ -39,8 +39,8 @@ describe('Create Contact', () => {
                   .eql(testContact.name);
                 response.body.should.have.property('address')
                   .eql(testContact.address);
-               response.body.should.have.property('company')
-                  .eql(testContact.company);
+               response.body.should.have.property('partnerId')
+                  .eql(testContact.partnerId);
                 response.body.should.have.property('contactNumber')
                   .eql(testContact.contactNumber);
                 response.body.should.have.property('email')
@@ -54,7 +54,7 @@ describe('Create Contact', () => {
         const testContact = {
           name:          'Test Contact',
           address:       'Test Address',
-          company:       'Test Company',
+          partnerId:     100,
           contactNumber: '123123',
           email:         'test.contact@tst.com',
           picture:       'dummy'

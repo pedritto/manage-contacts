@@ -3,6 +3,7 @@ const httpStatus = require('http-status');
 const Contact = require('../models/contact.schema');
 const contactFactory = require('../utils/contact.factory');
 const contactResponse = require('../utils/contact.response');
+const partnerService = require('../services/partner.service');
 
 function load (request, response, next, id) {
   Contact.get(id)
@@ -19,10 +20,11 @@ function list (request, response, next) {
 
   Promise.all([
       Contact.count(),
-      Contact.list({ limit, skip })
+      Contact.list({ limit, skip }),
+      partnerService()
     ])
-    .then(([count, list]) => {
-      const contacts = contactResponse.convertAll(list);
+    .then(([count, contactList, partners]) => {
+      const contacts = contactResponse.convertAll(contactList, partners);
       response.json({ count, contacts });
     })
     .catch(error => next(error));
@@ -31,7 +33,7 @@ function list (request, response, next) {
 function create (request, response, next) {
   const contact = contactFactory.createModel(request.body);
 
-  contact.save ()
+  contact.save()
     .then(newContact => {
       const data = contactResponse.convert(newContact);
       response.status(httpStatus.CREATED).json(data);

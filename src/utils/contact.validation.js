@@ -6,7 +6,7 @@ const bodyValidation = {
   address: Joi.string().required(),
   contactNumber: Joi.string().required(),
   email: Joi.string().required(),
-  company: Joi.string().required()
+  partnerId: Joi.number()
 };
 
 function create () {
